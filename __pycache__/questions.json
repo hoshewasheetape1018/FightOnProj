@@ -1,0 +1,10 @@
+{
+    "1": {
+        "question": "Write your name using print().",
+        "solution": "print(\"Your Name\")"
+    },
+    "2": {
+        "question": "Write an if statement that checks if x is greater than 5 and prints 'Big'.",
+        "solution": "if x > 5:\n    print(\"Big\")"
+    }
+}
