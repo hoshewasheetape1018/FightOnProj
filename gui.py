@@ -31,10 +31,14 @@ import tkinter as tk
 import random
 import pyglet
 import sqlite3
+import level1
+import level2
+import level3
 from tkinter import messagebox, simpledialog
 from PIL import Image, ImageTk
 
 
+<<<<<<< HEAD:__pycache__/gui.py
 
 
 #------------------------  Files / Functions ------------------------#
@@ -42,12 +46,20 @@ pyglet.font.add_file('__pycache__/assets/fonts/Silver.ttf')
 
 
 
+=======
+#------------------------  Files / Functions ------------------------#
+pyglet.font.add_file('fonts/Silver.ttf')
+>>>>>>> dialogwquestioncheck:gui.py
 
 #------------------------- Basic Window Def -------------------------#
 root = tk.Tk()
 root.title('FightOn')
 root.configure(bg='black')
+<<<<<<< HEAD:__pycache__/gui.py
 root.iconbitmap('__pycache__/assets/images/FightOn.ico')
+=======
+root.iconbitmap('imgs/FightOn.ico')
+>>>>>>> dialogwquestioncheck:gui.py
 
 window_width = 1000
 window_height = 750
@@ -107,7 +119,11 @@ def leaderboarddb_setup():
 #--------------------------- Title Screen --------------------------#
 def main():
     global main_canvas
+<<<<<<< HEAD:__pycache__/gui.py
     images['main_bg'] = ImageTk.PhotoImage(Image.open("__pycache__/assets/images/bg/main_bg.jpg"))
+=======
+    images['main_bg'] = ImageTk.PhotoImage(Image.open("imgs/bg/main_bg.jpg"))
+>>>>>>> dialogwquestioncheck:gui.py
     main_canvas = create_canvas(images['main_bg'])
     main_canvas.pack(expand=True)
 
@@ -125,7 +141,11 @@ def main():
 def show_leaderboard():
     global leaderboard_canvas
     if 'leaderboard_canvas' not in globals():
+<<<<<<< HEAD:__pycache__/gui.py
         images['leaderboard_bg'] = ImageTk.PhotoImage(Image.open("__pycache__/assets/images/bg/leaderboard_bg.jpg"))
+=======
+        images['leaderboard_bg'] = ImageTk.PhotoImage(Image.open("imgs/bg/leaderboard_bg.jpg"))
+>>>>>>> dialogwquestioncheck:gui.py
         leaderboard_canvas = create_canvas(images['leaderboard_bg'])
 
 
@@ -169,7 +189,11 @@ def reset():
     resetpop = tk.Toplevel(root)
     resetpop.title("Reset Scores")
     resetpop.configure(bg='black')
+<<<<<<< HEAD:__pycache__/gui.py
     resetpop.iconbitmap('__pycache__/assets/images/FightOn.ico')
+=======
+    resetpop.iconbitmap('imgs/FightOn.ico')
+>>>>>>> dialogwquestioncheck:gui.py
     resetpop.geometry("600x210+{}+0".format((resetpop.winfo_screenwidth() // 2) - 300))
 
 
@@ -227,7 +251,11 @@ def back_to_main():
 def levelselect():
     global levelselect_canvas
     if 'levelselect_canvas' not in globals():
+<<<<<<< HEAD:__pycache__/gui.py
         images['levelselect_bg'] = ImageTk.PhotoImage(Image.open("__pycache__/assets/images/bg/levelselect_bg.jpg"))
+=======
+        images['levelselect_bg'] = ImageTk.PhotoImage(Image.open("imgs/bg/levelselect_bg.jpg"))
+>>>>>>> dialogwquestioncheck:gui.py
         levelselect_canvas = create_canvas(images['levelselect_bg'])
         levelselect_canvas.bind("<Key>", check_konami_code)
         levelselect_canvas.focus_set()
@@ -306,7 +334,11 @@ def back():
 #---------- Menu Screen ----------#
 def menu():
     global menu_canvas
+<<<<<<< HEAD:__pycache__/gui.py
     images['menu_bg'] = ImageTk.PhotoImage(Image.open("__pycache__/assets/images/bg/menu_bg.jpg"))
+=======
+    images['menu_bg'] = ImageTk.PhotoImage(Image.open("imgs/bg/menu_bg.jpg"))
+>>>>>>> dialogwquestioncheck:gui.py
     menu_canvas = create_canvas(images['menu_bg'])
     menu_canvas.pack(expand=True)
 
@@ -391,7 +423,11 @@ def load_level(level_num, bg_image):
 #---------- Level Functions ----------#
 def level1():
     global level1_canvas
+<<<<<<< HEAD:__pycache__/gui.py
     images['level1_bg'] = ImageTk.PhotoImage(Image.open("__pycache__/assets/images/bg/level1_bg.jpg"))
+=======
+    images['level1_bg'] = ImageTk.PhotoImage(Image.open("imgs/bg/level1_bg.jpg"))
+>>>>>>> dialogwquestioncheck:gui.py
     level1_canvas = load_level(1, images['level1_bg'])
     levelselect_canvas.pack_forget()
 
@@ -416,7 +452,11 @@ def level2locked():
 
 def level2unlocked():
     global level2_canvas
+<<<<<<< HEAD:__pycache__/gui.py
     images['level2_bg'] = ImageTk.PhotoImage(Image.open("__pycache__/assets/images/bg/level2_bg.jpg"))
+=======
+    images['level2_bg'] = ImageTk.PhotoImage(Image.open("imgs/bg/level2_bg.jpg"))
+>>>>>>> dialogwquestioncheck:gui.py
     level2_canvas = load_level(2, images['level2_bg'])
     levelselect_canvas.pack_forget()
     unlock_level(1)
@@ -435,7 +475,11 @@ def level3locked():
 
 def level3unlocked():
     global level3_canvas
+<<<<<<< HEAD:__pycache__/gui.py
     images['level3_bg'] = ImageTk.PhotoImage(Image.open("__pycache__/assets/images/bg/level3_bg.jpg"))
+=======
+    images['level3_bg'] = ImageTk.PhotoImage(Image.open("imgs/bg/level3_bg.jpg"))
+>>>>>>> dialogwquestioncheck:gui.py
     level3_canvas = load_level(3, images['level3_bg'])
     levelselect_canvas.pack_forget()
 
@@ -447,7 +491,11 @@ def show_username_popup(score):
     popup = tk.Toplevel(root)
     popup.title("Enter Username")
     popup.configure(bg='black')
+<<<<<<< HEAD:__pycache__/gui.py
     popup.iconbitmap('__pycache__/assets/images/FightOn.ico')
+=======
+    popup.iconbitmap('imgs/FightOn.ico')
+>>>>>>> dialogwquestioncheck:gui.py
     popup.geometry("400x200+{}+{}".format((popup.winfo_screenwidth() // 2) - 200, (popup.winfo_screenheight() // 2) - 100))
 
 
@@ -518,7 +566,11 @@ def finishlevel(score):
 #---------- Menu Screen ----------#
 def lvlcomplete(score):
     global lvlcomplete_canvas
+<<<<<<< HEAD:__pycache__/gui.py
     images['lvlcomplete_bg'] = ImageTk.PhotoImage(Image.open("__pycache__/assets/images/bg/lvlcomplete_bg.jpg"))
+=======
+    images['lvlcomplete_bg'] = ImageTk.PhotoImage(Image.open("imgs/bg/lvlcomplete_bg.jpg"))
+>>>>>>> dialogwquestioncheck:gui.py
     lvlcomplete_canvas = create_canvas(images['lvlcomplete_bg'])
     lvlcomplete_canvas.pack(expand=True)
 

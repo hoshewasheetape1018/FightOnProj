@@ -40,3 +40,16 @@ def check_indentation(code):
     if len(lines) < 2:
         return False  # If there's no indented line, it's wrong
     return re.match(r'^\s+', lines[1]) is not None  # Second line must have indentation
+
+def check_input(player_input, correct_answer, dialog_system):
+    """
+    Checks the player's answer, updates the score, and advances dialogue if correct.
+    """
+    if check_answer(player_input, correct_answer):
+        dialog_system.level1_score += 10
+        print("✅ Correct! Score:", dialog_system.level1_score)
+        dialog_system.input_entry.delete(0, 'end')  # Clear input
+        dialog_system.next_dialog()  # Move to next dialogue
+    else:
+        print("❌ Incorrect! Try again.")
+        dialog_system.dialog_label.config(text="Incorrect! Try again.")

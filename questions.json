@@ -1,0 +1,51 @@
+{
+    "1": {
+        "question": "Write your name using print().",
+        "solution": "print(\"Your Name\")"
+    },
+    
+    "2": {
+        "question": "Write how to add 3 and 7",
+        "solution": "3 + 7"
+    },
+
+    "3": {
+        "question": "Write how to do floor division with 2 and 7 and assign the quotient to        the variable result",
+        "solution": "result = 2 // 7"
+    },
+
+    "4": {
+        "question": "Convert the string '1987' to an integer value",
+        "solution": "int(\"1987\")"
+    },
+    
+    "5": {
+        "question": "Assign a value to variable idnum",
+        "solution": "idnum = {integer value}"
+    },
+    
+    "6": {
+        "question": "Write how to calculate 65% of 86",
+        "solution": "86 * 0.65"
+    },
+
+    "7": {
+        "question": "Write code to ask for an input of what is your favorite color? and store it in the variable favcolor",
+        "solution": "favcolor=input(\"What is your favorite color\")"
+    },
+
+    "8": {
+        "question": "Write how to subtract 19 from 10 and store the value in the variable difference",
+        "solution": "difference = 19 - 10"
+    },
+
+    "9": {
+        "question": "Write how to ask for an input of what your age is and store it in the variable studentage as an integer value",
+        "solution": "studentage = int(input(\"What is your age?\")"
+    },
+
+    "10": {
+        "question": "Write how to display your response to the question: Are you okay?",
+        "solution": "print(\"yes\")"
+    }
+}

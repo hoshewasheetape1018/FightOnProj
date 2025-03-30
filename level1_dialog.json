@@ -1,0 +1,29 @@
+[   
+     {
+    "chara_name": "Teacher",
+    "dialog": "1", 
+    "expression": "akshually",
+    "sound": "SynthChime1",
+    "input": "1" ,
+    "scene": "hallway",
+    "bgm": "talkingtime"
+
+},
+    {
+        "chara_name": "Teacher",
+        "dialog": "Wow you exist", 
+        "expression": "smile",
+        "sound": "SynthChime1",
+        "scene": "toy",
+        "bgm": "talkingtime"
+  
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "YOUR MOOOOOOOOOOOOOOOOOOMM",
+        "expression": "angry",
+        "sound": "SynthChime1",
+        "scene": "security_room"
+    }
+  ]
+  
