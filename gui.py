@@ -20,17 +20,21 @@ import tkinter as tk
 import random
 import pyglet
 import sqlite3
+import level1
+import level2
+import level3
 from tkinter import messagebox, simpledialog
 from PIL import Image, ImageTk
 
+
 #------------------------  Files / Functions ------------------------#
-pyglet.font.add_file('FightOn/fonts/Silver.ttf')
+pyglet.font.add_file('fonts/Silver.ttf')
 
 #------------------------- Basic Window Def -------------------------#
 root = tk.Tk()
 root.title('FightOn')
 root.configure(bg='black')
-root.iconbitmap('FightOn/imgs/FightOn.ico')
+root.iconbitmap('imgs/FightOn.ico')
 
 window_width = 1000
 window_height = 750
@@ -88,7 +92,7 @@ def leaderboarddb_setup():
 #--------------------------- Title Screen --------------------------#
 def main():
     global main_canvas
-    images['main_bg'] = ImageTk.PhotoImage(Image.open("FightOn/imgs/bg/main_bg.jpg"))
+    images['main_bg'] = ImageTk.PhotoImage(Image.open("imgs/bg/main_bg.jpg"))
     main_canvas = create_canvas(images['main_bg'])
     main_canvas.pack(expand=True)
 
@@ -100,7 +104,7 @@ def main():
 def show_leaderboard():
     global leaderboard_canvas
     if 'leaderboard_canvas' not in globals():
-        images['leaderboard_bg'] = ImageTk.PhotoImage(Image.open("FightOn/imgs/bg/leaderboard_bg.jpg"))
+        images['leaderboard_bg'] = ImageTk.PhotoImage(Image.open("imgs/bg/leaderboard_bg.jpg"))
         leaderboard_canvas = create_canvas(images['leaderboard_bg'])
 
     leaderboard_canvas.delete("all")
@@ -126,7 +130,7 @@ def reset():
     resetpop = tk.Toplevel(root)
     resetpop.title("Reset Scores")
     resetpop.configure(bg='black')
-    resetpop.iconbitmap('FightOn/imgs/FightOn.ico')
+    resetpop.iconbitmap('imgs/FightOn.ico')
     resetpop.geometry("600x210+{}+0".format((resetpop.winfo_screenwidth() // 2) - 300))
 
     tk.Label(resetpop, text="Which level do you want to reset?", font=('Silver', 25), bg='black', fg='white').pack(pady=10)
@@ -160,7 +164,7 @@ def back_to_main():
 def levelselect():
     global levelselect_canvas
     if 'levelselect_canvas' not in globals():
-        images['levelselect_bg'] = ImageTk.PhotoImage(Image.open("FightOn/imgs/bg/levelselect_bg.jpg"))
+        images['levelselect_bg'] = ImageTk.PhotoImage(Image.open("imgs/bg/levelselect_bg.jpg"))
         levelselect_canvas = create_canvas(images['levelselect_bg'])
         levelselect_canvas.bind("<Key>", check_konami_code)
         levelselect_canvas.focus_set()
@@ -211,7 +215,7 @@ def back():
 #---------- Menu Screen ----------#
 def menu():
     global menu_canvas
-    images['menu_bg'] = ImageTk.PhotoImage(Image.open("FightOn/imgs/bg/menu_bg.jpg"))
+    images['menu_bg'] = ImageTk.PhotoImage(Image.open("imgs/bg/menu_bg.jpg"))
     menu_canvas = create_canvas(images['menu_bg'])
     menu_canvas.pack(expand=True)
 
@@ -265,7 +269,7 @@ def load_level(level_num, bg_image):
 #---------- Level Functions ----------#
 def level1():
     global level1_canvas
-    images['level1_bg'] = ImageTk.PhotoImage(Image.open("FightOn/imgs/bg/level1_bg.jpg"))
+    images['level1_bg'] = ImageTk.PhotoImage(Image.open("imgs/bg/level1_bg.jpg"))
     level1_canvas = load_level(1, images['level1_bg'])
     levelselect_canvas.pack_forget()
 
@@ -281,7 +285,7 @@ def level2locked():
 
 def level2unlocked():
     global level2_canvas
-    images['level2_bg'] = ImageTk.PhotoImage(Image.open("FightOn/imgs/bg/level2_bg.jpg"))
+    images['level2_bg'] = ImageTk.PhotoImage(Image.open("imgs/bg/level2_bg.jpg"))
     level2_canvas = load_level(2, images['level2_bg'])
     levelselect_canvas.pack_forget()
     unlock_level(1)
@@ -294,7 +298,7 @@ def level3locked():
 
 def level3unlocked():
     global level3_canvas
-    images['level3_bg'] = ImageTk.PhotoImage(Image.open("FightOn/imgs/bg/level3_bg.jpg"))
+    images['level3_bg'] = ImageTk.PhotoImage(Image.open("imgs/bg/level3_bg.jpg"))
     level3_canvas = load_level(3, images['level3_bg'])
     levelselect_canvas.pack_forget()
 
@@ -303,7 +307,7 @@ def show_username_popup(score):
     popup = tk.Toplevel(root)
     popup.title("Enter Username")
     popup.configure(bg='black')
-    popup.iconbitmap('FightOn/imgs/FightOn.ico')
+    popup.iconbitmap('imgs/FightOn.ico')
     popup.geometry("400x200+{}+{}".format((popup.winfo_screenwidth() // 2) - 200, (popup.winfo_screenheight() // 2) - 100))
 
     tk.Label(popup, text=f"Score: {score}", font=('Silver', 20), bg='black', fg='white').pack(pady=10)
@@ -347,7 +351,7 @@ def finishlevel(score):
 #---------- Menu Screen ----------#
 def lvlcomplete(score):
     global lvlcomplete_canvas
-    images['lvlcomplete_bg'] = ImageTk.PhotoImage(Image.open("FightOn/imgs/bg/lvlcomplete_bg.jpg"))
+    images['lvlcomplete_bg'] = ImageTk.PhotoImage(Image.open("imgs/bg/lvlcomplete_bg.jpg"))
     lvlcomplete_canvas = create_canvas(images['lvlcomplete_bg'])
     lvlcomplete_canvas.pack(expand=True)
 

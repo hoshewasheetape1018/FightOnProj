@@ -4,12 +4,16 @@
       "dialog": "1", 
       "expression": "normal",
       "sound": "SynthChime1",
-      "input": "1" 
+      "input": "1" ,
+      "scene": "toy",
+      "bgm": "talkingtime"
+
   },
   {
       "chara_name": "teacher",
       "dialog": "Good job!",
       "expression": "angry",
-      "sound": "SynthChime1"
+      "sound": "SynthChime1",
+      "scene": "security_room"
   }
 ]

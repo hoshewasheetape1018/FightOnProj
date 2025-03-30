@@ -1,0 +1,20 @@
+[
+    {
+        "chara_name": "teacher",
+        "dialog": "1", 
+        "expression": "normal",
+        "sound": "SynthChime1",
+        "input": "1" ,
+        "scene": "toy",
+        "bgm": "talkingtime"
+  
+    },
+    {
+        "chara_name": "teacher",
+        "dialog": "YOUR MOOOOOOOOOOOOOOOOOOMM",
+        "expression": "angry",
+        "sound": "SynthChime1",
+        "scene": "security_room"
+    }
+  ]
+  

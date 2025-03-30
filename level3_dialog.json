@@ -1,0 +1,19 @@
+[
+    {
+        "chara_name": "teacher",
+        "dialog": "amongus", 
+        "expression": "normal",
+        "sound": "SynthChime1",
+        "scene": "toy",
+        "bgm": "talkingtime"
+  
+    },
+    {
+        "chara_name": "teacher",
+        "dialog": "this is level 3",
+        "expression": "angry",
+        "sound": "SynthChime1",
+        "scene": "security_room"
+    }
+  ]
+  
