@@ -1,0 +1,15 @@
+[
+  {
+      "chara_name": "teacher",
+      "dialog": "1", 
+      "expression": "normal",
+      "sound": "SynthChime1",
+      "input": "1" 
+  },
+  {
+      "chara_name": "teacher",
+      "dialog": "Good job!",
+      "expression": "angry",
+      "sound": "SynthChime1"
+  }
+]
