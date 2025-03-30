@@ -1,8 +1,8 @@
 import tkinter as tk
-from PIL import Image, ImageTk  # PIL is needed for image handling
+from PIL import Image, ImageTk
 import pygame
 import json
-from questionchecker import check_input  # Import the function
+from questionchecker import check_input 
 
 class DialogSystem:
     def __init__(self, root, dialog_file, question_file):
@@ -11,105 +11,100 @@ class DialogSystem:
         self.questions = self.load_json(question_file)
         self.current_index = 0
         self.level1_score = 0
-        
+
         pygame.mixer.init()
 
-        # 🌟 Background Label (Placed behind everything)
-        self.background_label = tk.Label(root)
-        self.background_label.place(x=0, y=0, relwidth=1, relheight=1)  # Covers entire window
-        
-        # 🌟 Sprite Label (For character images)
-        self.sprite_label = tk.Label(root)
-        self.sprite_label.pack()
+        # Create Canvas for background and sprite
+        self.canvas = tk.Canvas(root, width=1000, height=600, bg="black")
+        self.canvas.place(relx=0.5, rely=0.5, anchor="center")
 
-        # 🌟 Dialog Box
-        self.dialog_label = tk.Label(root, text="", wraplength=400, bg="white")
-        self.dialog_label.pack()
+        # Image references to prevent garbage collection
+        self.bg_image = None
+        self.sprite_image = None
 
-        # 🌟 Buttons & Input
-        self.next_button = tk.Button(root, text="Next", command=self.next_dialog)
-        self.next_button.pack()
-        
-        self.input_entry = tk.Entry(root)
-        # Replace `self.check_input` in Button command:
-        self.enter_button = tk.Button(root, text="Enter", command=self.check_input_wrapper)
+        # Dialog Container Frame
+        self.dialog_frame = tk.Frame(root, bg="white", bd=2, relief="ridge")
+        self.dialog_frame.place(relx=0.5, rely=0.9, anchor="center", width=700, height=150)
+
+        # Character Name (Separate Row)
+        self.chara_name_label = tk.Label(self.dialog_frame, text="", font=("Arial", 14, "bold"), bg="white", fg="black")
+        self.chara_name_label.pack(pady=(10, 0))  # Added padding to separate from edges
+
+        self.dialog_label = tk.Label(self.dialog_frame, text="", wraplength=600, bg="white", fg="black", font=("Arial", 16))
+        self.dialog_label.pack(pady=(5, 10), padx=10)
+
+        # Input and Buttons Frame (inside dialog_frame)
+        self.input_frame = tk.Frame(self.dialog_frame, bg="white")
+        self.input_frame.pack(pady=5)
+
+        # Input Field
+        self.input_entry = tk.Entry(self.input_frame, width=50)
+        self.input_entry.pack(side="left", padx=5)
+
+        # Enter Button
+        self.enter_button = tk.Button(self.input_frame, text="Enter", command=self.check_input_wrapper)
+        self.enter_button.pack(side="left", padx=5)
+
+        # Next Button (Placed Below Dialog)
+        self.next_button = tk.Button(self.dialog_frame, text="Next", command=self.next_dialog)
+        self.next_button.pack(pady=5)
 
         # Start first dialog
         self.next_dialog()
 
-    # Inside DialogSystem class
     def check_input_wrapper(self):
         """Passes user input to questionchecker.py for validation."""
         user_answer = self.input_entry.get().strip()
-        check_input(user_answer, self.correct_answer, self)  # Pass self as the DialogSystem instance
+        check_input(user_answer, self.correct_answer, self)
 
-
-        
-        
     def load_json(self, filename):
         with open(filename, "r", encoding="utf-8") as file:
             return json.load(file)
-        
+
     def load_sprite(self, chara_name, expression):
-        """Loads and displays the character sprite."""
+        """Loads and displays the character sprite on the canvas."""
         if chara_name and expression:
             sprite_path = f"assets/images/{chara_name}_{expression}.png"
             try:
-                image = Image.open(sprite_path).resize((200, 200))  # Resize if needed
-                self.sprite_image = ImageTk.PhotoImage(image)
-                self.sprite_label.config(image=self.sprite_image)
-                print(f"Displaying: {sprite_path}")  # Debugging message
+                image = Image.open(sprite_path).convert("RGBA")
+                image = image.resize((1000, 750))  # Resize as needed
+                self.sprite_image = ImageTk.PhotoImage(image)  # Keep reference
+
+                # Remove old sprite and add new one
+                self.canvas.delete("sprite")  # Remove previous sprite
+                self.canvas.create_image(400, 400, image=self.sprite_image, tags="sprite")  # Centered sprite
+                print(f"Displaying: {sprite_path}")
             except FileNotFoundError:
                 print(f"❌ Sprite not found: {sprite_path}")
-                self.sprite_label.config(image="")  # Hide sprite if not found
+                self.canvas.delete("sprite")  # Hide sprite if not found
         else:
-            self.sprite_label.config(image="")  # Hide sprite if no character/expression
-    
+            self.canvas.delete("sprite")  # Hide sprite if no character/expression
+
     def load_background(self, scene_name):
-        """Fades into the new background from black."""
+        """Loads and displays the background image on the canvas."""
         if scene_name:
             bg_path = f"assets/images/{scene_name}.png"
             try:
-                self.new_bg = Image.open(bg_path).resize((800, 600)).convert("RGBA")
+                image = Image.open(bg_path).resize((1000, 750)).convert("RGBA")
+                self.bg_image = ImageTk.PhotoImage(image)
 
-                # Always fade from solid black
-                self.old_bg = Image.new("RGBA", (800, 600), (0, 0, 0, 255))
-
-                self.fade_step = 0  # Reset fade step
-                self.fade_background()  # Start the fade effect
-                
-                print(f"🔄 Fading background to: {bg_path}")
+                # Remove old background and add new one
+                self.canvas.delete("background")  # Remove previous background
+                self.canvas.create_image(0, 0, image=self.bg_image, anchor="nw", tags="background")
+                print(f"Background changed to: {bg_path}")
             except FileNotFoundError:
                 print(f"❌ Background not found: {bg_path}")
-
-    def fade_background(self):
-        """Gradually fades from black to the new background."""
-        if self.fade_step >= 10:
-            # Finalize background transition
-            self.background_image = ImageTk.PhotoImage(self.new_bg)
-            self.background_label.config(image=self.background_image)
-            return  
-
-        # Create a blended fade effect from black
-        blended = Image.blend(self.old_bg, self.new_bg, self.fade_step / 10)
-
-        self.background_fade_image = ImageTk.PhotoImage(blended)
-        self.background_label.config(image=self.background_fade_image)
-
-        self.fade_step += 1
-        self.root.after(50, self.fade_background)  # Smooth transition effect
 
     def play_bgm(self, bgm_name):
         """Plays or changes background music."""
         bgm_path = f"assets/audio/{bgm_name}.mp3"
         try:
             pygame.mixer.music.load(bgm_path)
-            pygame.mixer.music.play(-1)  # Loop indefinitely
+            pygame.mixer.music.play(-1)
             print(f"🎶 Playing BGM: {bgm_path}")
         except pygame.error:
             print(f"❌ BGM file not found: {bgm_path}")
 
- 
     def next_dialog(self):
         """Displays the next line of dialog and updates visuals."""
         if self.current_index >= len(self.dialog_data):
@@ -122,44 +117,49 @@ class DialogSystem:
         dialog = line.get("dialog", "")
         expression = line.get("expression", None)
         sound = line.get("sound", None)
-        scene = line.get("scene", None)  # Background change
-        bgm = line.get("bgm", None)  # Check if there's a bgm change
+        scene = line.get("scene", None)
+        bgm = line.get("bgm", None)
+        event = line.get("event", None)
 
-        # 🌟 Play background music if specified
+        # Execute Event if exists
+        if event and hasattr(self, event):
+            getattr(self, event)()
+
         if bgm:
             self.play_bgm(bgm)
-            
-        # 🌟 Update Background
+
         if scene:
             self.load_background(scene)
-        
-        # If dialog is a number, treat it as a question reference
+
+        # Check if dialog is a number (indicating a question)
         if str(dialog).isdigit():
             question_data = self.questions.get(str(dialog), {})
             dialog_text = question_data.get("question", "Unknown question")
             self.correct_answer = question_data.get("solution", "")
         else:
             dialog_text = dialog
-            self.correct_answer = None  # No answer needed
-        
-        self.dialog_label.config(text=f"{chara_name}: {dialog_text}")
-        
-        # Load sprite (if available)
+            self.correct_answer = None
+
+        # Update UI elements separately
+        self.chara_name_label.config(text=chara_name)  # Name stays separate
+        self.dialog_label.config(text=dialog_text)  # Show either question or dialogue
+
         self.load_sprite(chara_name, expression)
-        
+
         if sound:
-            pygame.mixer.Sound(f"assets/audio/{sound}.mp3").play()
-        
-        # Show input field if it's a question
+            try:
+                pygame.mixer.Sound(f"assets/audio/{sound}.mp3").play()
+            except pygame.error:
+                print(f"❌ Sound file not found: assets/audio/{sound}.mp3")
+
+        # Input Handling (Show Input Box if Question is Asked)
         if self.correct_answer:
-            self.next_button.pack_forget()
+            self.next_button.pack_forget()  # Hide Next Button
             self.input_entry.pack()
             self.enter_button.pack()
         else:
-            self.next_button.pack()
+            self.next_button.pack()  # Show Next Button
             self.input_entry.pack_forget()
             self.enter_button.pack_forget()
-        
+
         self.current_index += 1
-
-

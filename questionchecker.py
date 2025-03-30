@@ -48,9 +48,8 @@ def check_input(player_input, correct_answer, dialog_system):
     if check_answer(player_input, correct_answer):
         dialog_system.level1_score += 10
         print("✅ Correct! Score:", dialog_system.level1_score)
-        dialog_system.dialog_label.config(text="Correct!", fg="green")
         dialog_system.input_entry.delete(0, 'end')  # Clear input
         dialog_system.next_dialog()  # Move to next dialogue
     else:
         print("❌ Incorrect! Try again.")
-        dialog_system.dialog_label.config(text="Incorrect! Try again.", fg="red")
+        dialog_system.dialog_label.config(text="Incorrect! Try again.")
