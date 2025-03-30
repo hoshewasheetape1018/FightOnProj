@@ -313,9 +313,9 @@ def menu():
 
 
 
-    menu_canvas.create_window(500, 350, anchor="n", window=create_button("Resume Level", resume_level))
-    menu_canvas.create_window(500, 390, anchor="n", window=create_button("Main Menu", quit2main))
-    menu_canvas.create_window(500, 590, anchor="n", window=create_button("Exit", root.quit))
+    menu_canvas.create_window(500, 275, anchor="n", window=create_button("Resume Level", resume_level))
+    menu_canvas.create_window(500, 365, anchor="n", window=create_button("Main Menu", quit2main))
+    menu_canvas.create_window(500, 455, anchor="n", window=create_button("Exit", root.quit))
 
 
 
