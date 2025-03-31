@@ -30,7 +30,7 @@ class DialogSystem:
 
         # Dialog Container Frame
         self.dialog_frame = tk.Frame(root, bg="#25325E", highlightthickness=0)
-        self.dialog_frame.place(relx=0.5, rely=0.5, anchor="center", width=700, height=100, y=235)
+        self.dialog_frame.place(relx=0.5, rely=0.5, anchor="center", width=700, height=90, y=237)
 
         self.dialog_frame.columnconfigure(0, weight=3)
         self.dialog_frame.columnconfigure(1, weight=1)
@@ -55,6 +55,27 @@ class DialogSystem:
                                       font=('Silver', 20, 'bold'), bg="white", fg="black", bd=0, relief="ridge", width=10)
         self.text_box.pack(side="left", fill="both", expand=True, padx=(1, 10))
         self.enter_button.pack(side="right", padx=(2, 5))
+#---------------------------------------------------------------------------
+
+        # Objectives Container Frame
+        self.objectives_frame = tk.Frame(root, bg="#25325E", padx=3, pady=10)
+        self.objectives_frame.place(relx=0.5, rely=0.5, anchor="center", x= 349, y=-150)
+
+
+        # Objectives List Label (Multi-line)
+        self.objectives_label = tk.Label(self.objectives_frame, text="", 
+                                        font=('Silver', 15, 'bold'), fg="white", bg="#25325E", justify="left")
+        self.objectives_label.pack(anchor="w")
+
+        def update_objectives(new_objectives):
+            """Updates the objectives dynamically."""
+            self.objectives_label.config(text="\n".join(f"- {obj}" for obj in new_objectives))
+
+        # Example usage:
+        objectives_list = ["Learn how to print in \nconsole", "Learn variables", "Learn operations"]
+        update_objectives(objectives_list)
+
+#---------------------------------------------------------------------------
 
         self.next_dialog()
 
@@ -144,7 +165,7 @@ class DialogSystem:
 
     def show_input_box(self):
         self.next_button.grid_remove()
-        self.input_frame.place(relx=0.5, rely=0.85, anchor="center", width=650, height=50, y=-20)
+        self.input_frame.place(relx=0.5, rely=0.5, anchor="center", width=650, height=60, y=325)
 
     def hide_input_box(self):
         self.next_button.grid()

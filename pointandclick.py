@@ -1,12 +1,14 @@
 import tkinter as tk
 from PIL import Image, ImageTk
 
-
 class PointAndClick:
     def __init__(self, root):
         self.root = root
         self.root.title("Point and Click System")
         
+        self.canvas = tk.Canvas(self.root, width=800, height=600)
+        self.canvas.pack()
+
         self.scenes = {
             "hallway": "hallway.png",
             "classroom": "classroom.png",
@@ -26,7 +28,6 @@ class PointAndClick:
         }
         
         self.current_scene = "bookshelf 2"  # Set initial scene
-        
         
         self.load_scene(self.current_scene)
         
@@ -64,3 +65,8 @@ class PointAndClick:
             if x1 <= event.x <= x2 and y1 <= event.y <= y2:
                 print(f"Clicked on: {name}")
                 return
+
+root = tk.Tk()
+root.geometry("1000x750")  # Set window size
+PointAndClick(root)  # Pass root here
+root.mainloop()
