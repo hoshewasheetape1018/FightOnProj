@@ -1,22 +1,59 @@
 [   
+    {
+        "chara_name": "Teacher",
+        "dialog": "Welcome to FightOn Academy! Ready to learn Python?", 
+        "expression": "smile",
+        "scene": "hallway",
+        "bgm": "talkingtime"
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "Here's a handbook to get you started!", 
+        "expression": "bigsmile",
+        "scene": "hallway"
+    },
+    {
+        "chara_name": "",
+        "dialog": "You received 1x handbook.", 
+        "sound": "SynthChime1",
+        "scene": "hallway"
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "With this e-handbook, you'll be able to navigate the school environment easier.", 
+        "expression": "akshually_eyesmile",
+        "scene": "hallway"
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "I don't think you need to, though.", 
+        "expression": "sideeye_mweh",
+        "scene": "hallway"
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "After all, I'm here with you!", 
+        "expression": "eyesmilebig",
+        "scene": "hallway"
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "lesgo", 
+        "expression": "eyesmilebig",
+        "scene": "classroom"
+    },
      {
-    "chara_name": "Teacher",
-    "dialog": "1", 
-    "expression": "akshually",
-    "sound": "SynthChime1",
-    "input": "1" ,
-    "scene": "hallway",
-    "bgm": "talkingtime"
-
-},
+        "chara_name": "Teacher",
+        "dialog": "1", 
+        "expression": "akshually",
+        "input": "1" 
+    },
     {
         "chara_name": "Teacher",
         "dialog": "Wow you exist", 
         "expression": "smile",
         "sound": "SynthChime1",
-        "scene": "toy",
-        "bgm": "talkingtime"
-  
+        "scene": "toy"  
     },
     {
         "chara_name": "Teacher",

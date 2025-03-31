@@ -1,24 +1,33 @@
-import json
 import ast
 import re
+import tkinter as tk
 
 def check_answer(player_input, expected_solution):
     """Checks the player's input dynamically."""
     expected_solution = expected_solution.strip()
     player_input = player_input.strip()
 
+    print(f"DEBUG: Checking input: '{player_input}' against expected: '{expected_solution}'")
+
     # If expected solution is a print statement
     if expected_solution.startswith("print("):
-        return check_print_statement(player_input)
+        result = check_print_statement(player_input)
+        print(f"DEBUG: Print statement check: {result}")
+        return result
 
     # If expected solution is an if-statement or loop, check structure
     if expected_solution.startswith(("if", "for", "while")):
-        return check_indentation(player_input)
+        result = check_indentation(player_input)
+        print(f"DEBUG: Indentation check: {result}")
+        return result
 
     # If expected solution is a math expression, evaluate it
     try:
-        return eval(player_input) == eval(expected_solution)
-    except:
+        result = eval(player_input) == eval(expected_solution)
+        print(f"DEBUG: Math evaluation result: {result}")
+        return result
+    except Exception as e:
+        print(f"ERROR: Evaluation failed: {e}")
         return False
 
 def check_print_statement(code):
@@ -48,7 +57,7 @@ def check_input(player_input, correct_answer, dialog_system):
     if check_answer(player_input, correct_answer):
         dialog_system.level1_score += 10
         print("✅ Correct! Score:", dialog_system.level1_score)
-        dialog_system.input_entry.delete(0, 'end')  # Clear input
+        dialog_system.text_box.delete("1.0", tk.END)  # For Text widgets
         dialog_system.next_dialog()  # Move to next dialogue
     else:
         print("❌ Incorrect! Try again.")

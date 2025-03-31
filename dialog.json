@@ -1,4 +1,11 @@
-[
+[  
+  {
+  "chara_name": "teacher",
+  "dialog": "welcome to FightOn Academy!",
+  "expression": "angry",
+  "sound": "SynthChime1",
+  "scene": "security_room"
+},
   {
       "chara_name": "teacher",
       "dialog": "1", 
