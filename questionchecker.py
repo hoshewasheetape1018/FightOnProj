@@ -1,5 +1,3 @@
-import ast
-import re
 import tkinter as tk
 
 def check_answer(player_input, expected_solution):
@@ -32,23 +30,19 @@ def check_answer(player_input, expected_solution):
 
 def check_print_statement(code):
     """Checks if the player's input is a valid print statement with a string."""
-    try:
-        tree = ast.parse(code)
-        for node in ast.walk(tree):
-            if isinstance(node, ast.Call) and isinstance(node.func, ast.Name) and node.func.id == "print":
-                # Ensure print has at least one argument that is a string
-                if node.args and isinstance(node.args[0], ast.Constant) and isinstance(node.args[0].value, str):
-                    return True
-        return False
-    except:
-        return False
+    code = code.strip()
+    if code.startswith("print(") and code.endswith(")"):
+        content = code[6:-1].strip()  # Extract content inside print()
+        if content.startswith("\"") and content.endswith("\""):
+            return True  # Ensure it is a string inside print
+    return False
 
 def check_indentation(code):
     """Checks if the player used proper indentation for if/loops."""
     lines = code.split("\n")
     if len(lines) < 2:
         return False  # If there's no indented line, it's wrong
-    return re.match(r'^\s+', lines[1]) is not None  # Second line must have indentation
+    return lines[1].startswith(" ") or lines[1].startswith("\t")  # Check for leading spaces or tabs
 
 def check_input(player_input, correct_answer, dialog_system):
     """

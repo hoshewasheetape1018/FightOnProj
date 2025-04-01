@@ -1,66 +1,114 @@
 [   
+ 
     {
         "chara_name": "Teacher",
         "dialog": "Welcome to FightOn Academy! Ready to learn Python?", 
         "expression": "smile",
         "scene": "hallway",
-        "bgm": "talkingtime"
+        "bgm": "talkingtime",
+        "l":0
     },
     {
         "chara_name": "Teacher",
         "dialog": "Here's a handbook to get you started!", 
         "expression": "bigsmile",
-        "scene": "hallway"
+        "scene": "hallway",
+        "l":1
     },
     {
         "chara_name": "",
         "dialog": "You received 1x handbook.", 
         "sound": "SynthChime1",
-        "scene": "hallway"
+        "scene": "hallway",
+        "l":2
     },
     {
         "chara_name": "Teacher",
         "dialog": "With this e-handbook, you'll be able to navigate the school environment easier.", 
         "expression": "akshually_eyesmile",
-        "scene": "hallway"
+        "scene": "hallway",
+        "l":3
     },
     {
         "chara_name": "Teacher",
         "dialog": "I don't think you need to, though.", 
         "expression": "sideeye_mweh",
-        "scene": "hallway"
+        "scene": "hallway",
+        "l":4
     },
     {
         "chara_name": "Teacher",
-        "dialog": "After all, I'm here with you!", 
+        "dialog": "After all, I'm here with you!",
         "expression": "eyesmilebig",
-        "scene": "hallway"
+        "scene": "hallway",
+        "l":5
     },
     {
         "chara_name": "Teacher",
-        "dialog": "lesgo", 
-        "expression": "eyesmilebig",
-        "scene": "classroom"
+        "dialog": "Let's go to the classroom and start our lesson!", 
+        "expression": "eyesmile",
+        "l":6
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "You can click to navigate your surroundings.", 
+        "expression": "bigsmile",
+        "l":7
+    },
+    {
+        "hide": 1, 
+        "scene": "hallway",
+        "l":8
+        
+    },
+    {
+        "hide": 1, 
+        "scene": "classroom",
+        "l": 9
+        
+    },
+    {
+        "hide":0,
+        "chara_name": "Teacher",
+        "dialog": "Today we will learn how to display text in the console by using", 
+        "expression": "bigsmile",
+        "l":10
+    },
+    {
+        "hide":0,
+        "chara_name": "Teacher",
+        "dialog": "print(), learn how to do math, take user input, and use variables!", 
+        "expression": "bigsmile",
+        "l":11
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "Let’s see.", 
+        "expression": "bigsmile",
+        "l":12
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "You can click to navigate your surroundings.", 
+        "expression": "bigsmile",
+        "l":13
     },
      {
+        "hide":0,
         "chara_name": "Teacher",
         "dialog": "1", 
         "expression": "akshually",
-        "input": "1" 
+        "input": "1" ,
+        "l":15,
+        "objective": "Learn Print"
     },
     {
         "chara_name": "Teacher",
-        "dialog": "Wow you exist", 
+        "dialog": "I had a feeling your name might be {player_name} but that will do!", 
         "expression": "smile",
         "sound": "SynthChime1",
-        "scene": "toy"  
-    },
-    {
-        "chara_name": "Teacher",
-        "dialog": "YOUR MOOOOOOOOOOOOOOOOOOMM",
-        "expression": "angry",
-        "sound": "SynthChime1",
-        "scene": "security_room"
+        "l":16
     }
+
   ]
   

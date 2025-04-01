@@ -34,7 +34,7 @@ import sqlite3
 from dialogreader import DialogSystem
 from tkinter import messagebox, simpledialog
 from PIL import Image, ImageTk
-
+import pygame
 
 
 
@@ -306,6 +306,7 @@ def back():
 
 #---------- Menu Screen ----------#
 def menu():
+    print("In Menu")
     global menu_canvas
     images['menu_bg'] = ImageTk.PhotoImage(Image.open("assets/images/bg/menu_bg.jpg"))
     menu_canvas = create_canvas(images['menu_bg'])
@@ -315,7 +316,7 @@ def menu():
 
 
     menu_canvas.create_window(500, 275, anchor="n", window=create_button("Resume Level", resume_level))
-    menu_canvas.create_window(500, 365, anchor="n", window=create_button("Main Menu", quit2main))
+    menu_canvas.create_window(500, 365, anchor="n", window=create_button("Main Menu", lambda: gotomainmenu(dialog_system)))
     menu_canvas.create_window(500, 455, anchor="n", window=create_button("Exit", root.quit))
 
 
@@ -387,11 +388,11 @@ def load_level(level_num, bg_image):
 
 #---------- Level Functions ----------#
 def level1():
-    global level1_canvas
+    global level1_canvas, dialog_system
     images['level1_bg'] = ImageTk.PhotoImage(Image.open("assets/images/bg/level1_bg.jpg"))
     level1_canvas = load_level(1, images['level1_bg'])
     levelselect_canvas.pack_forget()
-    DialogSystem(root, "level1_dialog.json", "questions.json")
+    dialog_system = DialogSystem(root, level=1)
 
 
 
@@ -554,20 +555,38 @@ def lvlcomplete(score):
     # Update the level select buttons to reflect the new unlocked status
     update_lvlselectbtns()
    
-#---------- Quit to Main ----------#
-def quit2main():
+#---------- Go to Main Menu from Ingame ----------#
+def gotomainmenu(dialog_system):
+    print("Going to Main Menu")
+    
+    # Clear canvas
+    if hasattr(dialog_system, 'canvas'):
+        dialog_system.canvas.delete('all')
+    
+    # Stop background music if it's playing
+    if dialog_system.bgm_playing:
+        pygame.mixer.music.stop()  # Stop the music
+        dialog_system.bgm_playing = False  # Set bgm_playing to False
+
+    # Destroy the dialog window if it's a Toplevel
+    if hasattr(dialog_system, 'canvas_frame'):  # Check if the dialog window exists
+        print("Canvas cleared")
+        dialog_system.canvas_frame.destroy()  # Destroy the dialog window
+
+    if hasattr(dialog_system, 'dialog_frame'):  # Check if the dialog window exists
+        dialog_system.dialog_frame.destroy()  # Destroy the dialog window
+    
+    # Go back to the main menu
     menu_canvas.pack_forget()
     main_canvas.pack(expand=True)
 
 
 
-
-#---------- Quit to Level Select ----------#
+#---------- Quit to Main ----------#
 def quit2lvlselect():
-    lvlcomplete_canvas.pack_forget()
-    levelselect_canvas.pack(expand=True)
-
-
+    print("Going to level select)")
+    main_canvas.pack_forget()
+    main_canvas.pack(expand=True)
 
 
 leaderboarddb_setup()
