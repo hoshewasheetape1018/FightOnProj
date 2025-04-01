@@ -4,14 +4,14 @@
         "dialog": "amongus", 
         "expression": "normal",
         "sound": "SynthChime1",
-        "scene": "toy",
+        "scene": "secretroom",
         "bgm": "talkingtime"
   
     },
     {
         "chara_name": "teacher",
         "dialog": "this is level 3",
-        "expression": "angry",
+        "expression": "creepier",
         "sound": "SynthChime1",
         "scene": "security_room"
     }

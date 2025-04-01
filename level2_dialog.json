@@ -1,20 +1,310 @@
 [
     {
-        "chara_name": "teacher",
-        "dialog": "1", 
-        "expression": "normal",
-        "sound": "SynthChime1",
-        "input": "1" ,
-        "scene": "toy",
-        "bgm": "talkingtime"
-  
+        "chara_name": "Teacher",
+        "dialog": "Great job on passing the first level kiddo.",
+        "expression": "bigsmile",
+        "scene": "hallway",
+        "l": 1,
+        "bgm":"talkingtime"
     },
     {
-        "chara_name": "teacher",
-        "dialog": "this is level 2",
-        "expression": "angry",
-        "sound": "SynthChime1",
-        "scene": "security_room"
+        "chara_name": "Teacher",
+        "dialog": "Now, now, that’s only just the start so don’t get cocky.",
+        "expression": "eyesmilebig",
+        "scene": "hallway",
+        "l": 2
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "We’re going to move on to the next big thing about Python.",
+        "expression": "smile",
+        "scene": "hallway",
+        "l": 3
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "And to learn it we’ll be asking for the help of our school pet Tom the cat.",
+        "expression": "eyesmile",
+        "scene": "hallway",
+        "l": 4
+    },
+    {
+        "chara_name": "tom",
+        "dialog": "Meow",
+        "scene": "hallway",
+        "l": 5
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "He is quite the chonky cat, isn’t he?",
+        "expression": "chuckle",
+        "scene": "hallway",
+        "l": 6
+    },
+    {
+        "chara_name": "tom",
+        "dialog": "Grrr...",
+        "scene": "hallway",
+        "l": 7
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "But he is very hungry right now if you can’t tell.",
+        "expression": "eyesmile",
+        "scene": "hallway",
+        "l": 8
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "We need to feed him first. Conveniently enough, the information about Tom should be written in the school rules of your handbook!",
+        "expression": "bigsmile",
+        "scene": "hallway",
+        "l": 9
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "Aha, I forgot to mention that you need to download it. We’ll have to access it.",
+        "expression": "sideeye",
+        "scene": "hallway",
+        "l": 10
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "To access the file, you’ll need to know how to access data collections. This information book about Tom has everything you need to know about Tom but you need to access the right page.",
+        "expression": "smile",
+        "scene": "hallway",
+        "l": 11
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "In Python, you can access data in a data collection by calling it with its index, or if it’s a dictionary type, the key. Let’s access the first page of the information book.",
+        "expression": "bigsmile",
+        "scene": "hallway",
+        "l": 12
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "Would you look at that! The table of contents! Very good for us.",
+        "expression": "eyesmilebig",
+        "scene": "hallway",
+        "l": 13
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "The pages here serve as a list index. This information book my friend, is a ‘list.’ Well, it’s not literally one but a list is a data collection type that is ordered and changeable.",
+        "expression": "smile",
+        "scene": "hallway",
+        "l": 14
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "Tom’s preferences change a lot so it needs to be updated. The data collection type that is similar to list except you can’t change it is called a ‘tuple’.",
+        "expression": "smile",
+        "scene": "hallway",
+        "l": 15
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "In Python, we access data from a list through its index. Indexes always start with 0.",
+        "expression": "smile",
+        "scene": "hallway",
+        "l": 16
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "See this page number here? Try to navigate the book with its index.",
+        "expression": "bigsmile",
+        "scene": "hallway",
+        "l": 17
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "Question 1:",
+        "expression": "smile",
+        "scene": "hallway",
+        "l": 18
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "Yes ~ You did it! It’s important to note that indexes start at 0. and if you want to look at multiple indexes, you will use [first index:last index]. The last index doesn’t show up though so make sure you go higher than intended.",
+        "expression": "eyesmilebig",
+        "scene": "hallway",
+        "l": 19
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "To learn more about data collections, we will be going to the library! HUZZAH",
+        "expression": "bigsmile",
+        "scene": "hallway",
+        "l": 20
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "Welcome to the library ~ We’ll find more kinds of collection types here. Take a look around and try to access their information!",
+        "expression": "smile",
+        "scene": "library",
+        "l": 21
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "Hm? What was that? That sound came from the door?",
+        "expression": "worried",
+        "scene": "library",
+        "l": 22
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "Eh? What happened? Is it locked? … ………… Let me call the librarian.",
+        "expression": "neutral",
+        "scene": "library",
+        "l": 23
+    },
+    {
+        "chara_name": "Librarian",
+        "dialog": "…",
+        "scene": "library",
+        "l": 24
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "Hello? Is anyone there? Is Mr. Librarian here?",
+        "expression": "smile",
+        "scene": "library",
+        "l": 25
+    },
+    {
+        "chara_name": "Librarian",
+        "dialog": "Speaking.",
+        "scene": "library",
+        "l": 26
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "Hey, did you perchance, just close the library?",
+        "expression": "sideeye",
+        "scene": "library",
+        "l": 27
+    },
+    {
+        "chara_name": "Librarian",
+        "dialog": "… Yea? What’s that got to do with you?",
+        "scene": "library",
+        "l": 28
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "Well, can you open it for us?",
+        "expression": "smile",
+        "scene": "library",
+        "l": 29
+    },
+    {
+        "chara_name": "Librarian",
+        "dialog": "I’m already home. I’ve placed a system that automatically locks the library door shut closing hours.",
+        "scene": "library",
+        "l": 30
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "Well, you see. We’re at the library.",
+        "expression": "eyesmile",
+        "scene": "library",
+        "l": 31
+    },
+    {
+        "chara_name": "Librarian",
+        "dialog": "Don’t fret it. There’s a way to open it from there. I always leave a way to escape. But you have to earn it. Solve my puzzles, and you’ll find the key.",
+        "expression": "smirk",
+        "scene": "library",
+        "l": 32
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "Wow! That librarian is really tough. You hear that kid? We got this. Let’s do this together. Maybe let’s check the librarian’s desk first to see if he left something of use.",
+        "expression": "bigsmile",
+        "scene": "library",
+        "l": 33
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "Hmm, it seems like the library closes at 7 PM. Oops.",
+        "expression": "smile",
+        "scene": "library",
+        "l": 34
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "Question 5",
+        "expression": "bigsmile",
+        "scene": "library",
+        "l": 35
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "He really is making us solve riddles huh? How exciting.",
+        "expression": "smile",
+        "scene": "library",
+        "l": 36
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "Questions 6-10",
+        "expression": "smile",
+        "scene": "library",
+        "l": 37
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "Wow we did it! You’re amazing, kid!",
+        "expression": "bigsmile",
+        "scene": "library",
+        "l": 38
+    },
+    {
+        "chara_name": "Librarian",
+        "dialog": "I got a notification about positive news just now. Wow, I’m surprised, didn’t think you’d actually be able to do it.",
+        "scene": "library",
+        "l": 39
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "This kid is pretty smart! I think they're heading towards greatness, don't you think?",
+        "expression": "bigsmile",
+        "scene": "library",
+        "l": 40
+    },
+    {
+        "chara_name": "Librarian",
+        "dialog": "Whatever you say. Hey kid if you're listening, good luck. It's going to get harder from here on out. I wish you the best of luck.",
+        "scene": "library",
+        "l": 41
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "Didn’t think you were a sappy person eh? Thank you again!!",
+        "expression": "smile",
+        "scene": "library",
+        "l": 42
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "It’s just you and me again heh? Say, what was that back there that freaked you out? I couldn’t see it. Was the librarian hiding something freaky?",
+        "expression": "smile",
+        "scene": "library",
+        "l": 43
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "Well I guess it can’t be helped. If you don’t say it, I’ll find out about it soon enough.",
+        "expression": "bigsmile",
+        "scene": "library",
+        "l": 44
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "You should get some rest. I’ll see you later.",
+        "expression": "bigsmile",
+        "scene": "library",
+        "l": 45
     }
-  ]
-  
+]

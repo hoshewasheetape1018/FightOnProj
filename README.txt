@@ -1,6 +1,8 @@
 ## Description
 Fight On! is a project meant to game-ify learning Python. To many, learning how to code can be boring at times so, we decided to try to make learning it fun and much more interactive and engaging for those starting out. The horror aspect of the game’s meant as a means to entertain the user. This project also serves as a testament of our learnings from this course and practice our basic programming knowledge, and self-efficacy in programming with Python.
 
+Run the game from gui.py
+
 ###### Installation ######
 
 ### Prerequisites
