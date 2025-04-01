@@ -1,114 +1,248 @@
-[   
- 
+[
     {
         "chara_name": "Teacher",
-        "dialog": "Welcome to FightOn Academy! Ready to learn Python?", 
+        "dialog": "Welcome to FightOn Academy! Ready to learn Python?",
         "expression": "smile",
         "scene": "hallway",
         "bgm": "talkingtime",
-        "l":0
+        "l": 0
     },
     {
         "chara_name": "Teacher",
-        "dialog": "Here's a handbook to get you started!", 
+        "dialog": "Here's a handbook to get you started!",
         "expression": "bigsmile",
         "scene": "hallway",
-        "l":1
-    },
+        "l": 1
+   },
     {
         "chara_name": "",
-        "dialog": "You received 1x handbook.", 
+        "dialog": "You received 1x handbook.",
         "sound": "SynthChime1",
         "scene": "hallway",
-        "l":2
+        "l": 2
     },
     {
         "chara_name": "Teacher",
-        "dialog": "With this e-handbook, you'll be able to navigate the school environment easier.", 
+        "dialog": "With this e-handbook, you'll be able to navigate the school environment easier.",
         "expression": "akshually_eyesmile",
         "scene": "hallway",
-        "l":3
+        "l": 3
     },
     {
         "chara_name": "Teacher",
-        "dialog": "I don't think you need to, though.", 
+        "dialog": "I don't think you need to, though.",
         "expression": "sideeye_mweh",
         "scene": "hallway",
-        "l":4
+        "l": 4
     },
     {
         "chara_name": "Teacher",
         "dialog": "After all, I'm here with you!",
         "expression": "eyesmilebig",
         "scene": "hallway",
-        "l":5
+        "l": 5
     },
     {
         "chara_name": "Teacher",
-        "dialog": "Let's go to the classroom and start our lesson!", 
+        "dialog": "Let's go to the classroom and start our lesson!",
         "expression": "eyesmile",
-        "l":6
+        "l": 6
     },
     {
-        "chara_name": "Teacher",
-        "dialog": "You can click to navigate your surroundings.", 
-        "expression": "bigsmile",
-        "l":7
-    },
-    {
-        "hide": 1, 
+        "hide": 1,
         "scene": "hallway",
-        "l":8
-        
+        "l": 7
     },
     {
-        "hide": 1, 
+        "hide": 1,
         "scene": "classroom",
-        "l": 9
-        
+        "l": 8
     },
     {
-        "hide":0,
+        "hide": 0,
         "chara_name": "Teacher",
-        "dialog": "Today we will learn how to display text in the console by using", 
+        "dialog": "Today we will learn how to display text in the console by using print().",
         "expression": "bigsmile",
-        "l":10
-    },
-    {
-        "hide":0,
-        "chara_name": "Teacher",
-        "dialog": "print(), learn how to do math, take user input, and use variables!", 
-        "expression": "bigsmile",
-        "l":11
-    },
-    {
-        "chara_name": "Teacher",
-        "dialog": "Let’s see.", 
-        "expression": "bigsmile",
-        "l":12
-    },
-    {
-        "chara_name": "Teacher",
-        "dialog": "You can click to navigate your surroundings.", 
-        "expression": "bigsmile",
-        "l":13
-    },
-     {
-        "hide":0,
-        "chara_name": "Teacher",
-        "dialog": "1", 
-        "expression": "akshually",
-        "input": "1" ,
-        "l":15,
+        "l": 9,
         "objective": "Learn Print"
     },
     {
         "chara_name": "Teacher",
-        "dialog": "I had a feeling your name might be {player_name} but that will do!", 
+        "dialog": "Try it out, use the print function to print your name but put it in single or double quotation marks!",
+        "expression": "bigsmile",
+        "l": 10
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "1",
+        "expression": "akshually",
+        "input": "1",
+        "l": 11,
+        "sound": "SynthChime1"
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "I had a feeling your name might be {player_name}, but that will do!",
+        "expression": "mweh",
+        "l": 12
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "Now let’s do some math. Try adding two numbers together! You can add it by simply doing something like 1 + 1",
         "expression": "smile",
+        "l": 13
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "2",
+        "expression": "smile",
+        "input": "2",
+        "l": 14,
         "sound": "SynthChime1",
-        "l":16
-    }
+        "objective": "Learn Operations"
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "That’s the spirit! Now, let's try floor division, which gives the largest integer result.",
+        "expression": "smile",
+        "l": 15
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "3",
+        "expression": "bigsmile",
+        "input": "3",
+        "l": 16,
+        "sound": "SynthChime1"
+    },  
+    {
+        "chara_name": "Teacher",
+        "dialog": "To convert data type, it is datatype(variable) like int(\"29\")",
+        "expression": "akshually_eyesmile",
+        "l": 7
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "Great! Now let’s convert a string to an integer using int().",
+        "expression": "eyesmile",
+        "l": 17,
+        "sound": "SynthChime1"
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "4",
+        "expression": "smile",
+        "input": "4",
+        "l": 18,
+        "objective": "Learn Conversion"
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "It’s quite simple, isn’t it?",
+        "expression": "bigsmile",
+        "l": 19,
+        "sound": "SynthChime1"
+    },
+        {
+        "chara_name": "Teacher",
+        "dialog": "How about asking for a response? You can do it by variable_name = input(\"Write your question\") ",
+        "expression": "smile",
+        "l": 10
+    },    
+    {
+        "chara_name": "Teacher",
+        "dialog": "If you want to ask for a number however, you should convert it first. like int(input(\"Question\")) ",
+        "expression": "sideeye_mweh",
+        "l": 10
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "9",
+        "expression": "smile",
+        "input": "9",
+        "l": 20,
+        "objective": "Learn Input"
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "Haha, that's kind of personal. Anyways,",
+        "expression": "smile",
+        "l": 21,
+        "sound": "SynthChime1"
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": " Answer my questions correctly or else",
+        "expression": "creepy",
+        "l": 21
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "Just kidding!",
+        "expression": "eyesmilebig",
+        "l": 21
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "Let’s subtract 19 from 10. Simple, right?",
+        "expression": "smile",
+        "l": 22,
+        "bgm":"showtime"
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "8",
+        "expression": "smile",
+        "input": "8",
+        "l": 23,
+        "sound": "SynthChime1"
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "Let’s calculate 65% of 86. You remember percentages, right?",
+        "expression": "smile",
+        "l": 24
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "6",
+        "expression": "smile",
+        "input": "6",
+        "l": 25,
+        "sound": "SynthChime1"
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "Good. You’re keeping up. But are you? Are you really?",
+        "expression": "smile",
+        "l": 26
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "Now, one last thing. Are you okay?",
+        "expression": "eyesmilebig",
+        "l": 27
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "10",
+        "expression": "eyesmilebig",
+        "input": "10",
+        "l": 28,
+        "sound": "SynthChime1"
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "Don’t lie to me. I’ll know...",
+        "expression": "creepy",
+        "l": 29,
+        "bgm": "none"
 
-  ]
-  
+    },
+    {
+        "chara_name": "Teacher",
+        "dialog": "Congratulations, you passed! See you next time!",
+        "expression": "creepier",
+        "l": 30
+    }
+]

@@ -75,15 +75,15 @@ class PointAndClick:
         """Trigger the dialog jump based on the event."""
         if event_trigger == "Classroom":
             print("Jumping to the Classroom!")
-            self.dialog_system.next_dialog(9)  # Jump to the dialog index for classroom
+            self.dialog_system.next_dialog(8)  # Jump to the dialog index for classroom
             self.current_scene = "classroom"  # Change scene to classroom
             self.hide_dialog_box("classroom")  # Redraw the hitboxes for classroom
         elif event_trigger == "Hallway":
             print("Jumping to the Hallway!")
-            self.dialog_system.next_dialog(8)  # Jump to the dialog index for hallway
+            self.dialog_system.next_dialog(7)  # Jump to the dialog index for hallway
             self.current_scene = "hallway"  # Change scene to hallway
             self.hide_dialog_box("hallway")  # Redraw the hitboxes for hallway
         elif event_trigger == "Chalkboard":
             print("Interacting with the Chalkboard!")
             # Trigger dialog interaction or other logic for chalkboard interaction
-            self.dialog_system.next_dialog(10)  # Jump to dialog about interacting with the chalkboard
+            self.dialog_system.next_dialog(9)  # Jump to dialog about interacting with the chalkboard

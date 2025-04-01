@@ -26,6 +26,8 @@ class DialogSystem:
         self.level2_score = 0
         self.level3_score = 0
 
+        #Go to a part of the level. This is for debugging!!
+        self.root.bind("1", lambda event: self.end_level())
 
         self.correct_answer = None
         self.bgm_playing = False  # Track whether the background music is playing
@@ -142,6 +144,9 @@ class DialogSystem:
 
         if "{player_name}" in dialog:
             dialog = dialog.replace("{player_name}", self.player_name)
+            
+        if bgm == "none":
+            pygame.mixer.music.stop()
 
         if bgm:
             self.play_bgm(bgm)
@@ -246,3 +251,8 @@ class DialogSystem:
             return self.level2_score
         elif self.current_level == 3:
             return self.level3_score
+        
+    def end_level(self):
+        """End the current level and jump to the end dialog."""
+        print("Going to end")
+        self.next_dialog(30)  # Jump to the 9th dialog (which is the end)

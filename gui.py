@@ -41,20 +41,6 @@ import questionchecker
 global leveldone  
 leveldone = False  # Initially set to False
 
-# Function to check if level is done and trigger finishlvlbtn
-def check_level_done():
-    global leveldone  # Ensure you're accessing the global leveldone variable
-
-    # Check if the level is done
-    if leveldone:
-        print("Level is done, calling finishlvlbtn()")
-        finishlvlbtn()  # Call finishlvlbtn to handle end-of-level tasks
-        leveldone = False  # Reset leveldone to prevent it from calling again
-
-
-# Start the periodic check after loading the main menu
-check_level_done()  # Begin the periodic check
-
 
 #------------------------  Files / Functions ------------------------#
 pyglet.font.add_file('assets/fonts/Silver.ttf')
@@ -109,6 +95,57 @@ def create_canvas(bg_image):
     canvas.create_image(0, 0, image=bg_image, anchor="nw")
     return canvas
 
+
+def on_level_complete(dialog_system):
+    """Callback function to be called when a level is completed"""
+    global current_level
+    score = dialog_system.get_score()  # Get the score directly from dialog_system
+    
+    print("Level completed with score:", score)
+    
+    # Update level-specific scores
+    if current_level == 1:
+        global level1_score
+        level1_score = score
+    elif current_level == 2:
+        global level2_score
+        level2_score = score
+    elif current_level == 3:
+        global level3_score
+        level3_score = score
+    
+    # Clean up dialog system resources
+    cleanup_dialog_system(dialog_system)
+    
+    # Show username popup after cleanup
+    display_level_complete_screen(score)
+
+
+def cleanup_dialog_system(dialog_system):
+    """Clean up dialog system resources similar to gotomainmenu function"""
+    # Clear canvas
+    if hasattr(dialog_system, 'canvas'):
+        dialog_system.canvas.delete('all')
+    
+    # Stop background music if it's playing
+    if dialog_system.bgm_playing:
+        pygame.mixer.music.stop()  # Stop the music
+        dialog_system.bgm_playing = False  # Set bgm_playing to False
+
+    # Hide frames instead of destroying them
+    if hasattr(dialog_system, 'canvas_frame'):
+        dialog_system.canvas_frame.place_forget()
+    
+    if hasattr(dialog_system, 'dialog_frame'):
+        dialog_system.dialog_frame.place_forget()
+    
+    if hasattr(dialog_system, 'objectives_frame'):
+        dialog_system.objectives_frame.place_forget()
+    
+    if hasattr(dialog_system, 'input_frame'):
+        dialog_system.input_frame.place_forget()
+
+
 #------------------------- Leaderboard Setup -----------------------#
 def leaderboarddb_setup():
     with sqlite3.connect('leaderboard.db') as conn:
@@ -141,9 +178,6 @@ def main():
     main_canvas.create_window(500, 350, anchor="n", window=create_button("Play", levelselect))
     main_canvas.create_window(500, 440, anchor="n", window=create_button("Leaderboard", show_leaderboard))
     main_canvas.create_window(500, 530, anchor="n", window=create_button("Exit", root.quit))
-
-    check_level_done()  # Begin the periodic check
-
 
 
 #------------------------- Show Leaderboard ------------------------#
@@ -442,7 +476,7 @@ def level2unlocked():
     images['level2_bg'] = ImageTk.PhotoImage(Image.open("assets/images/bg/level2_bg.jpg"))
     level2_canvas = load_level(2, images['level2_bg'])
     levelselect_canvas.pack_forget()
-    unlock_level(1)
+    dialog_system = DialogSystem(root, level=2, on_complete=on_level_complete)
 
 
 
@@ -460,7 +494,7 @@ def level3unlocked():
     global level3_canvas
     images['level3_bg'] = ImageTk.PhotoImage(Image.open("assets/images/bg/level3_bg.jpg"))
     level3_canvas = load_level(3, images['level3_bg'])
-    levelselect_canvas.pack_forget()
+    dialog_system = DialogSystem(root, level=3, on_complete=on_level_complete)
 
 
 
@@ -502,54 +536,35 @@ def show_username_popup(score, current_level):
             messagebox.showerror("Database Error", f"An error occurred while saving the score: {e}")
             return
 
-        # Check if the next level should be unlocked and show message
-        if current_level == 1:
-            unlock_level(1)
-            messagebox.showinfo("Level Unlocked", "You have now unlocked Level 2.")
-        elif current_level == 2:
-            unlock_level(2)
-            messagebox.showinfo("Level Unlocked", "You have now unlocked Level 3.")
-
         popup.destroy()  # Close the popup after submitting
-        lvlcomplete(score)  # Show the level complete screen after saving the score
-
+        
     submit_button = tk.Button(popup, text="Submit", command=submit_username, font=('Silver', 15, 'bold'))
     submit_button.pack(pady=10)
 
 
 
-#---------- Function to finish level and record score ----------#
-def finishlvlbtn():
-    global current_level  # Access the current level
-    score = questionchecker.get_score()  # Get the score from questionchecker.py
-    print("Level is done", score)
+#--------- LEVEL COMPLETE SCREEN ---------
+def display_level_complete_screen(score, dialog_system=None):  # Make dialog_system optional
+    """Shows the level complete screen"""
+    global lvlcomplete_canvas, current_level
 
-    # Continue with the logic for updating scores and saving them
-    if current_level == 1:
-        level1_score = score
-    elif current_level == 2:
-        level2_score = score
-    elif current_level == 3:
-        level3_score = score
-
-    show_username_popup(score, current_level)  # Pass both score and current_level
-#---------- Finish Level ----------#
-def finishlevel(score):
-    pass
-
-
-
-
-#---------- Menu Screen ----------#
-def lvlcomplete(score):
-    global lvlcomplete_canvas
+    # Hide the current level canvas instead of specifically level1_canvas
+    if current_level == 1 and 'level1_canvas' in globals():
+        level1_canvas.pack_forget()
+    elif current_level == 2 and 'level2_canvas' in globals():
+        level2_canvas.pack_forget()
+    elif current_level == 3 and 'level3_canvas' in globals():
+        level3_canvas.pack_forget()
+        
     images['lvlcomplete_bg'] = ImageTk.PhotoImage(Image.open("assets/images/bg/lvlcomplete_bg.jpg"))
     lvlcomplete_canvas = create_canvas(images['lvlcomplete_bg'])
     lvlcomplete_canvas.pack(expand=True)
+    
+    # Pass the dialog_system to gotomainmenu
+    lvlcomplete_canvas.create_window(500, 465, anchor="n", 
+                                     window=create_button("Main Menu", lambda: gotomainmenu(dialog_system)))
 
-    lvlcomplete_canvas.create_window(500, 375, anchor="n", window=create_button("Resume Level", try_again))
-    lvlcomplete_canvas.create_window(500, 465, anchor="n", window=create_button("Main Menu", quit2lvlselect))
-
+    # Check if the next level should be unlocked and show message
     if current_level == 1:
         unlock_level(1)
         messagebox.showinfo("Level Unlocked", "You have now unlocked Level 2.")
@@ -559,38 +574,32 @@ def lvlcomplete(score):
 
     # Update the level select buttons to reflect the new unlocked status
     update_lvlselectbtns()
+    show_username_popup(score, current_level)
+
+#---------- Finish Level ----------#
+def finishlevel(score):
+    pass
+
+
+
+
 
 #---------- Go to Main Menu from Ingame ----------#
 def gotomainmenu(dialog_system):
     print("Going to Main Menu")
     
-    # Clear canvas
-    if hasattr(dialog_system, 'canvas'):
-        dialog_system.canvas.delete('all')
+    cleanup_dialog_system(dialog_system)
     
-    # Stop background music if it's playing
-    if dialog_system.bgm_playing:
-        pygame.mixer.music.stop()  # Stop the music
-        dialog_system.bgm_playing = False  # Set bgm_playing to False
-
-    # Destroy the dialog window if it's a Toplevel
-    if hasattr(dialog_system, 'canvas_frame'):  # Check if the dialog window exists
-        print("Canvas cleared")
-        dialog_system.canvas_frame.destroy()  # Destroy the dialog window
-
-    if hasattr(dialog_system, 'dialog_frame'):  # Check if the dialog window exists
-        dialog_system.dialog_frame.destroy()  # Destroy the dialog window
-
-    if hasattr(dialog_system, 'objectives_frame'):  # Check if the objective window exists
-        dialog_system.objectives_frame.destroy()  # Destroy it
+    # Check if menu_canvas exists before trying to hide it
+    if 'menu_canvas' in globals():
+        menu_canvas.pack_forget()
     
-    if hasattr(dialog_system, 'input_frame'):  # Check if the input window exists
-        dialog_system.input_frame.destroy()  # Destroy it
+    # Check if lvlcomplete_canvas exists and hide it if needed
+    if 'lvlcomplete_canvas' in globals():
+        lvlcomplete_canvas.pack_forget()
     
     # Go back to the main menu
-    menu_canvas.pack_forget()
     main_canvas.pack(expand=True)
-
 
 
 #---------- Quit to Main ----------#
@@ -600,6 +609,7 @@ def quit2lvlselect():
     main_canvas.pack(expand=True)
 
 
+
 def on_level_complete(dialog_system):
     """Callback function to be called when a level is completed"""
     global current_level
@@ -607,6 +617,14 @@ def on_level_complete(dialog_system):
     
     print("Level completed with score:", score)
     
+    # Clean up the active level canvas to hide the current level's background
+    if current_level == 1 and 'level1_canvas' in globals():
+        level1_canvas.pack_forget()
+    elif current_level == 2 and 'level2_canvas' in globals():
+        level2_canvas.pack_forget()
+    elif current_level == 3 and 'level3_canvas' in globals():
+        level3_canvas.pack_forget()
+
     # Update level-specific scores
     if current_level == 1:
         global level1_score
@@ -617,9 +635,12 @@ def on_level_complete(dialog_system):
     elif current_level == 3:
         global level3_score
         level3_score = score
-    
-    show_username_popup(score, current_level)
 
+    # Clean up dialog system resources
+    cleanup_dialog_system(dialog_system)
+
+    # Show the level complete screen
+    display_level_complete_screen(score, dialog_system)
 
 leaderboarddb_setup()
 main()
