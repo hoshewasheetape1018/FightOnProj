@@ -1,5 +1,14 @@
 import tkinter as tk
 
+def get_score(self):
+    """Get the total score based on the current level."""
+    if self.current_level == 1:
+        return self.level1_score
+    elif self.current_level == 2:
+        return self.level2_score
+    elif self.current_level == 3:
+        return self.level3_score
+
 def check_answer(player_input, expected_solution):
     """Checks the player's input dynamically."""
     expected_solution = expected_solution.strip()
@@ -43,16 +52,18 @@ def check_indentation(code):
     if len(lines) < 2:
         return False  # If there's no indented line, it's wrong
     return lines[1].startswith(" ") or lines[1].startswith("\t")  # Check for leading spaces or tabs
-
 def check_input(player_input, correct_answer, dialog_system):
-    """
-    Checks the player's answer, updates the score, and advances dialogue if correct.
-    """
+    """Checks the player's answer and updates the score."""
     if check_answer(player_input, correct_answer):
-        dialog_system.level1_score += 10
-        print("✅ Correct! Score:", dialog_system.level1_score)
-        dialog_system.text_box.delete("1.0", tk.END)  # For Text widgets
-        dialog_system.next_dialog()  # Move to next dialogue
-    else:
-        print("❌ Incorrect! Try again.")
-        dialog_system.dialog_label.config(text="Incorrect! Try again.")
+        # Update score based on the current level
+        current_level = dialog_system.current_level
+        if current_level == 1:
+            dialog_system.level1_score += 10
+        elif current_level == 2:
+            dialog_system.level2_score += 10
+        elif current_level == 3:
+            dialog_system.level3_score += 10
+        
+
+        dialog_system.text_box.delete("1.0", tk.END)  # Clear the text box
+        dialog_system.next_dialog()  # Proceed to next dialog

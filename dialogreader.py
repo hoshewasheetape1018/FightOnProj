@@ -9,16 +9,24 @@ import os
 
 # Load custom font
 pyglet.font.add_file('assets/fonts/Silver.ttf')
+leveldone = False  # You can store this in gui.py or another shared module
 
 class DialogSystem:
-    def __init__(self, root, level):
+    def __init__(self, root, level, on_complete=None):
         self.root = root
         self.level = level  # Dynamically set level
+        self.current_level = level  # Add this line to initialize current_level
+        self.on_complete = on_complete
         self.player_name = os.getlogin()  # Get the PC's username
         self.dialog_data = self.load_json(f"level{level}_dialog.json")  # Load level-specific dialog JSON
         self.questions = self.load_json("questions.json")
         self.current_index = 0
+        self.leveldone = False 
         self.level1_score = 0
+        self.level2_score = 0
+        self.level3_score = 0
+
+
         self.correct_answer = None
         self.bgm_playing = False  # Track whether the background music is playing
         pygame.mixer.init()
@@ -111,8 +119,17 @@ class DialogSystem:
         if self.current_index >= len(self.dialog_data):
             self.dialog_label.config(text="End of dialog.")
             self.next_button.config(state=tk.DISABLED)
+            # Set leveldone to True when dialog is finished
+            self.leveldone = True
+            
+            # Call the completion callback if provided
+            if self.on_complete:
+                self.on_complete(self)
+                        
+            print("Calling finish button level, level done == True", self.leveldone)
             return
-        
+    
+
         line = self.dialog_data[self.current_index]
         chara_name = line.get("chara_name", "")
         dialog = line.get("dialog", "")
@@ -218,3 +235,14 @@ class DialogSystem:
         """Show the current dialog and handle scene transitions."""
         self.dialog_frame.place(relx=0.5, rely=0.5, anchor="center", width=700, height=90, y=237)
         print("Showing dialog box")
+
+
+
+    def get_score(self):
+        """Get the current score based on the level."""
+        if self.current_level == 1:
+            return self.level1_score
+        elif self.current_level == 2:
+            return self.level2_score
+        elif self.current_level == 3:
+            return self.level3_score
